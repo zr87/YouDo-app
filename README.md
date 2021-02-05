@@ -1,10 +1,10 @@
 # YouDo-app
 The YouDo app - test project for JS basics, DOM, BOM
 
-### Work flow
+## Work flow
 Create your copy from the project <a href="https://jamboard.google.com/d/1hzc1YTasUJAWPheYo_j9iUdnOQjgG-o9ivvbT8SdDXU/edit?usp=sharing" target="_blank">Kanban board</a> and mark your progress on it!
 
-### Story points
+## Story points
 
 | Code       | Story title | description     |
 | :---       |    :----:   | :---          |
@@ -22,8 +22,8 @@ Create your copy from the project <a href="https://jamboard.google.com/d/1hzc1YT
 | MZ-11    |  Remember filter option |The selected filter remains after browser refresh. |
 
 
-### Help
-#### MZ-07  -  Storing arrays and objects in localStorage
+## Help
+### MZ-07  -  Storing arrays and objects in localStorage
 LocalStorage only supports strings. Use JSON.stringify() to convert array to a tring and JSON.parse() to convert it back. 
 ```   
 const myArr = ['bacon', 'lettuce', 'tomatoes'];

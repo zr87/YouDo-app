@@ -1,7 +1,10 @@
 # YouDo-app
 The YouDo app - test project for JS basics, DOM, BOM
 
-## Story points
+### Work flow
+Create your copy from the <a href="https://jamboard.google.com/d/1hzc1YTasUJAWPheYo_j9iUdnOQjgG-o9ivvbT8SdDXU/edit?usp=sharing" target="_blank">Kanban board!</a> and mark your progress on it!
+
+### Story points
 
 | Code       | Story title | description     |
 | :---       |    :----:   | :---          |
@@ -17,3 +20,6 @@ The YouDo app - test project for JS basics, DOM, BOM
 | MZ-09    |Todo modification | I can modify the single task items: task description, priority and due. |
 | MZ-10    | Filtering todos |There is a select input field on the screen, where we can filter task by priority. Selectable options = [low, medium, high, all item] |
 | MZ-11    |  Remember filter option |The selected filter remains after browser refresh. |
+
+
+

@@ -2,7 +2,7 @@
 The YouDo app - test project for JS basics, DOM, BOM
 
 ### Work flow
-Create your copy from the <a href="https://jamboard.google.com/d/1hzc1YTasUJAWPheYo_j9iUdnOQjgG-o9ivvbT8SdDXU/edit?usp=sharing" target="_blank">Kanban board!</a> and mark your progress on it!
+Create your copy from the project <a href="https://jamboard.google.com/d/1hzc1YTasUJAWPheYo_j9iUdnOQjgG-o9ivvbT8SdDXU/edit?usp=sharing" target="_blank">Kanban board</a> and mark your progress on it!
 
 ### Story points
 

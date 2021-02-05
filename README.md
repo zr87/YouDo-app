@@ -22,4 +22,17 @@ Create your copy from the project <a href="https://jamboard.google.com/d/1hzc1YT
 | MZ-11    |  Remember filter option |The selected filter remains after browser refresh. |
 
 
+### Help
+#### MZ-07  -  Storing arrays and objects in localStorage
+LocalStorage only supports strings. Use JSON.stringify() to convert array to a tring and JSON.parse() to convert it back. 
+```   
+const myArr = ['bacon', 'lettuce', 'tomatoes'];
+const myArrStr = JSON.stringify(myArr); 
+
+console.log(myArrStr);
+// "["shark","fish","dolphin"]"
+
+console.log(JSON.parse(myArrStr));
+// ["shark","fish","dolphin"]  ``` 
+
 

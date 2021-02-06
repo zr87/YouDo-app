@@ -22,6 +22,17 @@ Create your copy from the project <a href="https://jamboard.google.com/d/1hzc1YT
 | MZ-11    |  Remember filter option |The selected filter remains after browser refresh. |
 
 
+
+## Before You start
+
+- Examine the tasks! Read trough carefully all the storypoints!
+- Create a pencil wireframe mockup how would it look like!
+- 1 storypoint = 1 commit
+- Priority is on functionality, use minimal CSS! 
+- Plan some breaks beforehand to stretch and walk beforehand, you have plenty of time!
+- Ask help from instructors and not from your fellows! 
+
+
 ## Help
 ### MZ-07  -  Storing arrays and objects in localStorage
 LocalStorage only supports strings. Use JSON.stringify() to convert array to a tring and JSON.parse() to convert it back. 

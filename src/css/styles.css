@@ -1,1 +1,9 @@
 /* Your styles */
+
+.invalid {
+    background-color: lightpink;
+}
+
+.valid {
+    background-color: lightgreen;
+}

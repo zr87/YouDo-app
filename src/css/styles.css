@@ -7,3 +7,20 @@
 .valid {
     background-color: lightgreen;
 }
+
+.app-container {
+    width: 530px;
+    margin: 20px auto;
+}
+
+ul {
+    border: 1px solid gray;
+    list-style: none;
+    padding: 0;
+}
+ul li {
+    padding: 10px;
+}
+ul li button {
+    float: right;
+}

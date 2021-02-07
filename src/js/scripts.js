@@ -16,8 +16,17 @@ window.addEventListener("load", () => {
 function initializeInputDefaults() {
     //disable submit by default
     submitBtn.disabled = true;
+
+    //clearing the input
+    formEl.todo.value = null;
+    formEl.todo.className = "";
+    formEl.priority.value = ""
+    // set defaults
     formEl.duedate.value = new Date().toISOString().split("T")[0];
     formEl.duedate.min = new Date().toISOString().split("T")[0];
+
+    //add focus to text input
+    formEl.todo.focus();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -40,9 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         //create list item element
         createListItem(newTodo, itemIndex);
 
-        //clearing the input
-        formEl.todo.value = null;
-        formEl.todo.className = ""
+        initializeInputDefaults();
     });
 
     // add event listener on the UL list to catch delete btn clicks

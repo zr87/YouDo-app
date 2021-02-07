@@ -30,7 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
 
         // saving the input values into an object
-        const newTodo = { description: formEl.todo.value, dueDate: formEl.duedate.value}
+        const newTodo = {
+            description: formEl.todo.value,
+            dueDate: formEl.duedate.value,
+            priority: formEl.priority.value
+        }
 
         const itemIndex = storeItem(newTodo);
         //create list item element
@@ -90,7 +94,7 @@ function createListItem(todoItem, index) {
     deleteBtn.classList.add("button,delete");
     deleteBtn.innerText = "delete";
     // set  the elements inner text
-    listItemEl.textContent = `${todoItem.description} / ${todoItem.dueDate}`;
+    listItemEl.textContent = `${todoItem.description} / ${todoItem.dueDate} / ${todoItem.priority}`;
     //set the index data attribute on the LI element
     listItemEl.dataset.index = index;
     //append the delete button the the LI element

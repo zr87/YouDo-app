@@ -13,21 +13,28 @@ window.addEventListener("load", () => {
     }
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-
+function initializeInputDefaults() {
     //disable submit by default
     submitBtn.disabled = true;
+    formEl.duedate.value = new Date().toISOString().split("T")[0];
+    formEl.duedate.min = new Date().toISOString().split("T")[0];
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    initializeInputDefaults();
 
     // add task on form submit
     formEl.addEventListener("submit", event => {
         //prevent browser refresh
         event.preventDefault();
-        // saving the inputs value
-        const taskText = formEl.todo.value;
-        //create list item element
 
-        const itemIndex = storeItem(taskText);
-        createListItem(taskText, itemIndex);
+        // saving the input values into an object
+        const newTodo = { description: formEl.todo.value, dueDate: formEl.duedate.value}
+
+        const itemIndex = storeItem(newTodo);
+        //create list item element
+        createListItem(newTodo, itemIndex);
 
         //clearing the input
         formEl.todo.value = null;
@@ -39,16 +46,18 @@ document.addEventListener('DOMContentLoaded', () => {
         //stooping event bubbling
         event.stopPropagation();
 
-        //get the items's index
-        const index = event.target.parentElement.dataset.index;
+        if(event.target.className.includes("delete")) {
+            //get the items's index
 
-        //prompt user to confirm delete
-        const shouldDeleteItem = window.confirm("Do you really want to delete this task?");
+            //prompt user to confirm delete
+            const shouldDeleteItem = window.confirm("Do you really want to delete this task?");
 
-        // if user hit OK then remove LI item from the UL list!
-        if (shouldDeleteItem) {
-            deleteItem()
-            event.target.parentElement.remove();
+            // if user hit OK then remove LI item from the UL list!
+            if (shouldDeleteItem) {
+                const index = event.target.parentElement.dataset.index;
+                deleteItem(index)
+                event.target.parentElement.remove();
+            }
         }
     });
 
@@ -74,14 +83,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-function createListItem(todoText, index) {
+function createListItem(todoItem, index) {
     const listItemEl = document.createElement("li");
     const deleteBtn = document.createElement("button");
 
     deleteBtn.classList.add("button,delete");
     deleteBtn.innerText = "delete";
     // set  the elements inner text
-    listItemEl.textContent = todoText;
+    listItemEl.textContent = `${todoItem.description} / ${todoItem.dueDate}`;
     //set the index data attribute on the LI element
     listItemEl.dataset.index = index;
     //append the delete button the the LI element

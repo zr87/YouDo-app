@@ -1,8 +1,19 @@
+let todoItems = [];
+const TODO_ITEMS_STORAGE_KEY = "todos";
+
+const formEl = document.getElementById("form");
+const listEl = document.getElementById("todo-list");
+const submitBtn = formEl.submit;
+
+window.addEventListener("load", () => {
+    const parsedTodoItems = localStorage.getItem(TODO_ITEMS_STORAGE_KEY);
+    if (parsedTodoItems) {
+        todoItems = JSON.parse(parsedTodoItems);
+        todoItems.forEach(todoItem => createListItem(todoItem));
+    }
+});
 
 document.addEventListener('DOMContentLoaded', () => {
-    const formEl = document.getElementById("form");
-    const listEl = document.getElementById("todo-list");
-    const submitBtn = formEl.submit;
 
     //disable submit by default
     submitBtn.disabled = true;
@@ -14,17 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // saving the inputs value
         const taskText = formEl.todo.value;
         //create list item element
-        const listItemEl = document.createElement("li");
-        const deleteBtn = document.createElement("button");
-        deleteBtn.classList.add("button,delete");
-        deleteBtn.innerText = "delete";
-        // set  the elements inner text
-        listItemEl.textContent = taskText;
-        listItemEl.append(deleteBtn);
-        // append the created li element
-        listEl.append(listItemEl);
+
+        const itemIndex = storeItem(taskText);
+        createListItem(taskText, itemIndex);
+
         //clearing the input
         formEl.todo.value = null;
+        formEl.todo.className = ""
     });
 
     // add event listener on the UL list to catch delete btn clicks
@@ -32,11 +39,15 @@ document.addEventListener('DOMContentLoaded', () => {
         //stooping event bubbling
         event.stopPropagation();
 
+        //get the items's index
+        const index = event.target.parentElement.dataset.index;
+
         //prompt user to confirm delete
-        const shuldBeDeleted = window.confirm("Do you really want to delete this task?");
+        const shouldDeleteItem = window.confirm("Do you really want to delete this task?");
 
         // if user hit OK then remove LI item from the UL list!
-        if (shuldBeDeleted) {
+        if (shouldDeleteItem) {
+            deleteItem()
             event.target.parentElement.remove();
         }
     });
@@ -44,9 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //adding validation on keyup
     formEl.todo.addEventListener("keyup", event => {
         //stooping event bubbling
-        //event.stopPropagation();
-
-        console.log("value", event.target.value);
+        event.stopPropagation();
 
         if(event.target.value.length >= 6) {
             event.target.classList.add("valid");
@@ -64,3 +73,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
+function createListItem(todoText, index) {
+    const listItemEl = document.createElement("li");
+    const deleteBtn = document.createElement("button");
+
+    deleteBtn.classList.add("button,delete");
+    deleteBtn.innerText = "delete";
+    // set  the elements inner text
+    listItemEl.textContent = todoText;
+    //set the index data attribute on the LI element
+    listItemEl.dataset.index = index;
+    //append the delete button the the LI element
+    listItemEl.append(deleteBtn);
+
+    // append the created LI element to the UL list
+    listEl.append(listItemEl);
+}
+
+function storeItem(todo) {
+    todoItems.push(todo);
+    localStorage.setItem(TODO_ITEMS_STORAGE_KEY, JSON.stringify(todoItems));
+
+    return todoItems.length - 1;
+}
+function deleteItem(index) {
+    //remove the todo by index
+    todoItems.splice(index, 1);
+    //store the modified array in LS
+    localStorage.setItem(TODO_ITEMS_STORAGE_KEY, JSON.stringify(todoItems));
+}
